@@ -508,7 +508,10 @@ class X12Styles(X12General):
         xf = XF()
         self.bk.xf_list.append(xf)
         self.bk.xfcount += 1
-        numFmtId = int(elem.get('numFmtId', '0'))
+        try:
+            numFmtId = int(elem.get('numFmtId', '0'))
+        except ValueError:
+            numFmtId = 0
         xf.format_key = numFmtId
         is_date = self.fmt_is_date.get(numFmtId, 0)
         self.bk._xf_index_to_xl_type_map[xfx] = is_date + 2
