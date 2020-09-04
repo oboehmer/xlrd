@@ -689,7 +689,7 @@ class X12Sheet(X12General):
                         pass
                     else:
                         raise Exception('unexpected tag %r' % child_tag)
-                if not tvalue:
+                if not tvalue or tvalue.isspace():
                     if self.bk.formatting_info:
                         self.sheet.put_cell(rowx, colx, XL_CELL_BLANK, '', xf_index)
                 else:
